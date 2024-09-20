@@ -5,8 +5,9 @@ import 'package:tractian/assets/widgets/custom_expansion.dart';
 
 class GeneralListView extends StatelessWidget {
   final List<General> list;
-
-  GeneralListView({required this.list});
+  final bool expanded;
+  const GeneralListView(
+      {super.key, required this.list, required this.expanded});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,10 @@ class GeneralListView extends StatelessWidget {
       shrinkWrap: true,
       itemCount: list.length,
       itemBuilder: (context, index) {
-        return GeneralTile(general: list[index]);
+        return GeneralTile(
+          general: list[index],
+          expanded: expanded,
+        );
       },
     );
   }
@@ -24,8 +28,8 @@ class GeneralListView extends StatelessWidget {
 
 class GeneralTile extends StatelessWidget {
   final General general;
-
-  GeneralTile({required this.general});
+  final bool expanded;
+  const GeneralTile({super.key, required this.general, required this.expanded});
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +66,7 @@ class GeneralTile extends StatelessWidget {
             ),
           )
         : CustomExpansionTile(
+            expanded: expanded,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +92,10 @@ class GeneralTile extends StatelessWidget {
                 ? [
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
-                      child: GeneralListView(list: general.general),
+                      child: GeneralListView(
+                        list: general.general,
+                        expanded: expanded,
+                      ),
                     )
                   ]
                 : [],

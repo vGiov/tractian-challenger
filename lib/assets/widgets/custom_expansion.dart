@@ -6,18 +6,24 @@ class CustomExpansionTile extends StatefulWidget {
   final bool expanded;
 
   const CustomExpansionTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.children,
-    this.expanded = false,
-  }) : super(key: key);
+    required this.expanded,
+  });
 
   @override
-  _CustomExpansionTileState createState() => _CustomExpansionTileState();
+  State<CustomExpansionTile> createState() => _CustomExpansionTileState();
 }
 
 class _CustomExpansionTileState extends State<CustomExpansionTile> {
   bool isExpanded = false;
+
+  @override
+  void initState() {
+    isExpanded = widget.expanded;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
         ),
         if (isExpanded)
           Column(
-            children: widget.children, // Renderiza a lista de filhos
+            children: widget.children,
           ),
       ],
     );

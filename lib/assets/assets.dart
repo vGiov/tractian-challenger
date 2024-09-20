@@ -36,6 +36,14 @@ class _AssetsState extends State<Assets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.chevron_left_sharp,
+              color: Colors.white,
+            )),
         backgroundColor: const Color.fromARGB(255, 23, 25, 45),
         title: const Text('Assets', style: TextStyle(color: Colors.white)),
         centerTitle: true,
@@ -52,6 +60,11 @@ class _AssetsState extends State<Assets> {
                   color: const Color(0xFFEAEFF3),
                 ),
                 child: TextFormField(
+                  onChanged: (value) {
+                    controller.filtrar();
+                    setState(() {});
+                  },
+                  controller: controller.filtro,
                   cursorColor: const Color.fromARGB(255, 23, 25, 45),
                   decoration: InputDecoration(
                       hintText: 'Buscar Ativo ou Local',
@@ -102,7 +115,9 @@ class _AssetsState extends State<Assets> {
             const SizedBox(height: 8),
             controller.loading
                 ? const CircularProgressIndicator()
-                : GeneralListView(list: controller.general),
+                : GeneralListView(
+                    list: controller.filteredGeneral,
+                    expanded: controller.expanded),
           ],
         ),
       ),
