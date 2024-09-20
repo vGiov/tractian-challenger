@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tractian/companie_assets/features/general.dart';
+import 'package:tractian/companie_assets/features/general.entity.dart';
 import 'package:tractian/companie_assets/presentation/widgets/custom_expansion.dart';
 
 class GeneralListView extends StatelessWidget {

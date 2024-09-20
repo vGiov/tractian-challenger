@@ -105,7 +105,7 @@ class _CompanieAssetsState extends State<CompanieAssets> {
               ),
               const SizedBox(height: 8),
               _controller.loading
-                  ? const CircularProgressIndicator()
+                  ? const Center(child: CircularProgressIndicator())
                   : Observer(builder: (_) {
                       return GeneralListView(
                           list: _controller.filteredGeneral.asObservable(),
