@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CustomExpansionTile extends StatefulWidget {
   final Widget title;
   final List<Widget> children;
-  final bool expanded;
+  final bool? expanded;
 
   const CustomExpansionTile({
     super.key,
     required this.title,
     required this.children,
-    required this.expanded,
+    this.expanded,
   });
 
   @override
@@ -18,12 +18,6 @@ class CustomExpansionTile extends StatefulWidget {
 
 class _CustomExpansionTileState extends State<CustomExpansionTile> {
   bool isExpanded = false;
-
-  @override
-  void initState() {
-    isExpanded = widget.expanded;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +46,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
             ),
           ),
         ),
-        if (isExpanded)
+        if (widget.expanded != null ? widget.expanded! : isExpanded)
           Column(
             children: widget.children,
           ),

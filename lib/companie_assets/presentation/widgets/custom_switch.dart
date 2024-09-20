@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomSwitch extends StatefulWidget {
+class CustomSwitch extends StatelessWidget {
   final bool value;
   final String name;
   final String svgPath;
@@ -15,21 +15,16 @@ class CustomSwitch extends StatefulWidget {
   });
 
   @override
-  State<CustomSwitch> createState() => _CustomSwitchState();
-}
-
-class _CustomSwitchState extends State<CustomSwitch> {
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(4),
-      onTap: widget.onTap,
+      onTap: onTap,
       child: Ink(
         decoration: BoxDecoration(
-          color: widget.value ? const Color.fromARGB(255, 33, 136, 255) : null,
+          color: value ? const Color.fromARGB(255, 33, 136, 255) : null,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(
-            color: widget.value
+            color: value
                 ? const Color.fromARGB(255, 33, 136, 255)
                 : const Color.fromARGB(255, 213, 215, 216),
           ),
@@ -38,12 +33,12 @@ class _CustomSwitchState extends State<CustomSwitch> {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           child: Row(
             children: [
-              SvgPicture.asset(widget.svgPath),
+              SvgPicture.asset(svgPath),
               const SizedBox(width: 6),
               Text(
-                widget.name,
+                name,
                 style:
-                    TextStyle(color: widget.value ? Colors.white : Colors.grey),
+                    TextStyle(color: value ? Colors.white : Colors.grey),
               )
             ],
           ),

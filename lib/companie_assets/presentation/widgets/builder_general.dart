@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tractian/assets/general.dart';
-import 'package:tractian/assets/widgets/custom_expansion.dart';
+import 'package:tractian/companie_assets/features/general.dart';
+import 'package:tractian/companie_assets/presentation/widgets/custom_expansion.dart';
 
 class GeneralListView extends StatelessWidget {
   final List<General> list;
-  final bool expanded;
+  final bool? expanded;
   const GeneralListView(
       {super.key, required this.list, required this.expanded});
 
@@ -28,7 +28,7 @@ class GeneralListView extends StatelessWidget {
 
 class GeneralTile extends StatelessWidget {
   final General general;
-  final bool expanded;
+  final bool? expanded;
   const GeneralTile({super.key, required this.general, required this.expanded});
 
   @override
