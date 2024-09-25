@@ -53,27 +53,25 @@ class _CompanieAssetsState extends State<CompanieAssets> {
                     borderRadius: BorderRadius.circular(4),
                     color: const Color(0xFFEAEFF3),
                   ),
-                  child: Observer(builder: (_) {
-                    return TextFormField(
-                      onChanged: (value) {
-                        _controller.setTextFilter(value);
-                      },
-                      controller: _controller.find,
-                      cursorColor: const Color.fromARGB(255, 23, 25, 45),
-                      decoration: InputDecoration(
-                          hintText: 'Buscar Ativo ou Local',
-                          hintStyle: const TextStyle(
-                            color: Color(0xFF8E98A3),
+                  child: TextFormField(
+                    onChanged: (value) {
+                      _controller.setTextFilter(value);
+                    },
+                    controller: _controller.find,
+                    cursorColor: const Color.fromARGB(255, 23, 25, 45),
+                    decoration: InputDecoration(
+                        hintText: 'Buscar Ativo ou Local',
+                        hintStyle: const TextStyle(
+                          color: Color(0xFF8E98A3),
+                        ),
+                        icon: Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: SvgPicture.asset(
+                            'assets/SEARCH.svg',
                           ),
-                          icon: Padding(
-                            padding: const EdgeInsets.only(left: 16),
-                            child: SvgPicture.asset(
-                              'assets/SEARCH.svg',
-                            ),
-                          ),
-                          border: InputBorder.none),
-                    );
-                  }),
+                        ),
+                        border: InputBorder.none),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -106,11 +104,9 @@ class _CompanieAssetsState extends State<CompanieAssets> {
               const SizedBox(height: 8),
               _controller.loading
                   ? const Center(child: CircularProgressIndicator())
-                  : Observer(builder: (_) {
-                      return GeneralListView(
-                          list: _controller.filteredGeneral.asObservable(),
-                          expanded: _controller.expanded);
-                    }),
+                  : GeneralListView(
+                      list: _controller.filteredGeneral.asObservable(),
+                      expanded: _controller.expanded),
             ],
           ),
         );

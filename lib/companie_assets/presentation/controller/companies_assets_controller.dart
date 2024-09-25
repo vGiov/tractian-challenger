@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:tractian/companie_assets/features/general.entity.dart';
@@ -84,10 +85,17 @@ abstract class CompaniesAssetsControllerBase with Store {
   ObservableList<General> filteredGeneral = ObservableList<General>();
 
   Future<void> getGeneral(String companyId) async {
-    final generalUseCase = GeneralsUseCase();
     general.clear();
-    general.addAll(await generalUseCase.getGeneral(companyId));
+
+    final result = await compute(isolateGeneral, companyId);
+
+    general.addAll(result);
     filteredGeneral.addAll(general);
+  }
+
+  Future<List<General>> isolateGeneral(String companyId) async {
+    final generalUseCase = GeneralsUseCase();
+    return await generalUseCase.getGeneral(companyId);
   }
 
   void filterNow() {
